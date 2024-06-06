@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Sidebar from "./Sidebar";
+import "./App.css";
+import Header from "./Header";
+import RecommendedVideos from "./RecommendedVideos";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SearchPage from "./SearchPage";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <h1>LETS BUILD YOUTUBE CLONE 🚀</h1> */}
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/search/:searchTerm"
+            element={
+              <>
+                <div className="app__pages">
+                  <Sidebar />
+                  <SearchPage />
+                </div>
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="app__pages">
+                  <Sidebar />
+                  <RecommendedVideos />
+                </div>
+              </>
+            }
+          />
+        </Routes>
+      </Router>
+      {/* <Header/>
+     <div className="app__pages">
+      <Sidebar/>
+      <RecommendedVideos/>
+     </div> */}
     </div>
   );
 }
